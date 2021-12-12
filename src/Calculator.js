@@ -62,6 +62,10 @@ class Gauss_Calculator extends React.Component {
         setTimeout(()=>(console.log(this.state)),100)
     }
 
+    getSolution(){
+        this.assignEquations()
+    }
+
       render() {
       return <div className="flex flex-col flex-auto">
           <h1> السلام عليكم و رحمة الله و بركاته</h1>
@@ -77,8 +81,10 @@ class Gauss_Calculator extends React.Component {
                   this.getEquationList()
               }
           </div>
-          <button type="button" onClick={()=>(this.assignEquations())}>
+
+          <button type="button" onClick={()=>(this.getSolution())}>
                 Click Me for solutions!</button>
+
           <div>
 
           </div>
