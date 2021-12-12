@@ -46,6 +46,22 @@ class Gauss_Calculator extends React.Component {
         return content;
       };
     
+    assignEquations(){
+        let array=[]
+        let cArray=[]
+        for(let x=0;x<this.state.mSize;x++){
+            for(let y=0;y<=this.state.mSize;y++){
+                y == this.state.mSize ? 
+                cArray.push(document.querySelector('#o'+x).value):
+                cArray.push(document.querySelector('#x'+x+y).value)
+            }
+            array.push(cArray)
+            cArray=[]
+        }
+        this.setState({equations: array})
+        setTimeout(()=>(console.log(this.state)),100)
+    }
+
       render() {
       return <div className="flex flex-col flex-auto">
           <h1> السلام عليكم و رحمة الله و بركاته</h1>
@@ -61,8 +77,11 @@ class Gauss_Calculator extends React.Component {
                   this.getEquationList()
               }
           </div>
-          
-          <div></div>
+          <button type="button" onClick={()=>(this.assignEquations())}>
+                Click Me for solutions!</button>
+          <div>
+
+          </div>
       </div>;
     }
   }
