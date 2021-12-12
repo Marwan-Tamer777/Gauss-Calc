@@ -6,7 +6,18 @@ class Gauss_Calculator extends React.Component {
         Xs: [],
         equations: []
     } 
-    render() {
+
+    getEquationList () {
+        let content = [];
+       
+        for (let i = 0; i < this.state.mSize; i++) {
+          content.push(<p key={i}>fas</p>);
+        }
+        
+        return content;
+      };
+    
+      render() {
       return <div className="flex flex-col flex-auto">
           <h1> السلام عليكم و رحمة الله و بركاته</h1>
           
@@ -16,7 +27,11 @@ class Gauss_Calculator extends React.Component {
                 Click Me!</button>
           </div>
           
-          <div></div>
+          <div>
+              {
+                  this.getEquationList()
+              }
+          </div>
           
           <div></div>
       </div>;
