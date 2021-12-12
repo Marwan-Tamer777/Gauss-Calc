@@ -66,6 +66,7 @@ class Gauss_Calculator extends React.Component {
 
     getSolution(){
         this.assignEquations()
+        let pXs = this.state.xs;
         let cXs =[];
         
         for(let x=0;x<this.state.mSize;x++){
