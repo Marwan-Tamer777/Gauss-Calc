@@ -4,7 +4,7 @@ import './output.css';
 class Gauss_Calculator extends React.Component {
     state={
         mSize: 0,
-        Xs: [],
+        xs: [],
         equations: []
     } 
 
@@ -49,6 +49,7 @@ class Gauss_Calculator extends React.Component {
     assignEquations(){
         let array=[]
         let cArray=[]
+        let xArray=[]
         for(let x=0;x<this.state.mSize;x++){
             for(let y=0;y<=this.state.mSize;y++){
                 y == this.state.mSize ? 
@@ -57,13 +58,22 @@ class Gauss_Calculator extends React.Component {
             }
             array.push(cArray)
             cArray=[]
+            xArray.push(0)
         }
+        this.setState({xs: xArray})
         this.setState({equations: array})
-        setTimeout(()=>(console.log(this.state)),100)
     }
 
     getSolution(){
         this.assignEquations()
+        let cXs =[];
+        
+        for(let x=0;x<this.state.mSize;x++){
+            cXs.push()
+        }
+
+     //   this.setState({xs: cXs})
+        setTimeout(()=>(console.log(this.state)),100)
     }
 
       render() {
