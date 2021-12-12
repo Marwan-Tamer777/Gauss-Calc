@@ -1,4 +1,5 @@
 import React from 'react';
+import './output.css';
 
 class Gauss_Calculator extends React.Component {
     state={
@@ -7,13 +8,41 @@ class Gauss_Calculator extends React.Component {
         equations: []
     } 
 
+    getEquation (index) {
+        let content = [];
+        for (let i = 0; i <= this.state.mSize; i++) {
+          content.push(
+                <span key={i}>
+                    {
+                        i == this.state.mSize ?  
+                        (<span>
+                            <span className="text-2xl"> = </span> 
+                            <input id={"o"+index} type="number" defaultValue="0" min="0" className=" w-8"></input></span> ) 
+                        : 
+                        (<span>
+                            <input id={"x"+index+i} type="number" defaultValue="0" min="0" className=" w-8"></input>
+                            <span className="m-2 text-green-600">X{i+1}</span>
+                            </span>)
+                    }
+                </span>
+            );
+        }
+        return content;
+      };
+
     getEquationList () {
         let content = [];
        
         for (let i = 0; i < this.state.mSize; i++) {
-          content.push(<p key={i}>fas</p>);
+          content.push(
+                <div key={i}>
+                    {
+                        this.getEquation(i)
+                    }
+                </div>
+            );
         }
-        
+
         return content;
       };
     
@@ -27,7 +56,7 @@ class Gauss_Calculator extends React.Component {
                 Click Me!</button>
           </div>
           
-          <div>
+          <div className="flex flex-col">
               {
                   this.getEquationList()
               }
