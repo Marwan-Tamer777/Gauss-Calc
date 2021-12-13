@@ -5,7 +5,7 @@ class Gauss_Calculator extends React.Component {
     state={
         mSize: 0,
         xs: [0,0,0,0],
-        equations:[['13', '5', '-3', '1', '18'],['2', '12', '1', '-4', '13'],['3', '-4', '10', '1', '29'],['2', '1', '-3', '9', '31']],
+        equations:[],
         mI:0
     } 
 
@@ -71,17 +71,16 @@ class Gauss_Calculator extends React.Component {
         let eq = this.state.equations
         let X = 0;
         let cXs =[];
+        console.log(0+"Iteration",pXs)
         for(let z=0;z<this.state.mI;z++){
             for(let x=0;x<this.state.mSize;x++){
-            
-                X=eq[this.state.mSize+1]
-
+                X= eq[x][this.state.mSize]
                 for(let y=0;y<this.state.mSize;y++){
                     if(!(x==y)){X=X-(eq[x][y]*pXs[y])}
+                }
+                X =X/eq[x][x]
+                cXs[x]=X
             }
-            X =X/eq[x]
-            cXs[x]=X
-        }
          pXs = cXs
         }
         this.setState({xs: cXs})
@@ -89,7 +88,7 @@ class Gauss_Calculator extends React.Component {
     }
 
     getSolution(){
-       // this.assignEquations()
+        this.assignEquations()
         setTimeout(()=>(this.PlaceHolder()),100)
     }
 
