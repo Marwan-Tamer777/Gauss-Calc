@@ -4,8 +4,9 @@ import './output.css';
 class Gauss_Calculator extends React.Component {
     state={
         mSize: 0,
-        xs: [],
-        equations: []
+        xs: [0,0,0,0],
+        equations:[['13', '5', '-3', '1', '18'],['2', '12', '1', '-4', '13'],['3', '-4', '10', '1', '29'],['2', '1', '-3', '9', '31']],
+        mI:0
     } 
 
     getEquation (index) {
@@ -17,10 +18,10 @@ class Gauss_Calculator extends React.Component {
                         i == this.state.mSize ?  
                         (<span>
                             <span className="text-2xl"> = </span> 
-                            <input id={"o"+index} type="number" defaultValue="0" min="0" className=" w-8"></input></span> ) 
+                            <input id={"o"+index} type="number" defaultValue="0" className=" w-8"></input></span> ) 
                         : 
                         (<span>
-                            <input id={"x"+index+i} type="number" defaultValue="0" min="0" className=" w-8"></input>
+                            <input id={"x"+index+i} type="number" defaultValue="0" className=" w-8"></input>
                             <span className="m-2 text-green-600">X{i+1}</span>
                             </span>)
                     }
@@ -62,28 +63,54 @@ class Gauss_Calculator extends React.Component {
         }
         this.setState({xs: xArray})
         this.setState({equations: array})
+        console.log(this.state)
+    }
+
+    PlaceHolder(){
+        let pXs = this.state.xs
+        let eq = this.state.equations
+        let X = 0;
+        let cXs =[];
+        for(let z=0;z<this.state.mI;z++){
+            for(let x=0;x<this.state.mSize;x++){
+            
+                X=eq[this.state.mSize+1]
+
+                for(let y=0;y<this.state.mSize;y++){
+                    if(!(x==y)){X=X-(eq[x][y]*pXs[y])}
+            }
+            X =X/eq[x]
+            cXs[x]=X
+        }
+         pXs = cXs
+        }
+        this.setState({xs: cXs})
+        setTimeout(()=>(console.log(this.state)),100)
     }
 
     getSolution(){
-        this.assignEquations()
-        let pXs = this.state.xs;
-        let cXs =[];
-        
-        for(let x=0;x<this.state.mSize;x++){
-            cXs.push()
-        }
+       // this.assignEquations()
+        setTimeout(()=>(this.PlaceHolder()),100)
+    }
 
-     //   this.setState({xs: cXs})
-        setTimeout(()=>(console.log(this.state)),100)
+    showSolution(){
+        let solutionList = []
+        for(let i=1;i<=this.state.mSize;i++){
+            solutionList.push(<span key={i}>X{i}={this.state.xs[i-1]}</span>)
+        }
+        return solutionList
     }
 
       render() {
       return <div className="flex flex-col flex-auto">
-          <h1> السلام عليكم و رحمة الله و بركاته</h1>
-          
-          <div className="bg-slate-500 flex flex-row">
+          <h1 className="text-4xl m-auto bg-black text-white rounded-xl"> السلام عليكم و رحمةالله</h1>
+          <p className="text-4xl m-auto bg-black text-white rounded-xl">  hvujfvjyhvj</p>
+          <div className="flex flex-row">
+              <label>Num of Variables in the system:</label>
             <input id="mSize" type="number" defaultValue="0" min="0"></input>
-            <button type="button" onClick={()=>(this.setState({mSize: document.querySelector('#mSize').value}))}>
+            <label>Num of required Iterations:</label>
+            <input id="mI" type="number" defaultValue="0" min="0"></input>
+            <button type="button" onClick={()=>(this.setState({mSize: document.querySelector('#mSize').value, mI:  document.querySelector('#mI').value}))}>
                 Click Me!</button>
           </div>
           
@@ -96,8 +123,8 @@ class Gauss_Calculator extends React.Component {
           <button type="button" onClick={()=>(this.getSolution())}>
                 Click Me for solutions!</button>
 
-          <div>
-
+          <div className="flex flex-row">
+              {this.showSolution()}
           </div>
       </div>;
     }
