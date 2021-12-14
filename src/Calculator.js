@@ -6,7 +6,8 @@ class Gauss_Calculator extends React.Component {
         mSize: 0,
         xs: [0,0,0,0],
         equations:[],
-        mI:0
+        mI:0,
+        methodOption:0
     } 
 
     getEquation (index) {
@@ -61,24 +62,25 @@ class Gauss_Calculator extends React.Component {
             cArray=[]
             xArray.push(0)
         }
-        this.setState({xs: xArray})
-        this.setState({equations: array})
-        console.log(this.state)
+        this.setState({xs: xArray,equations: array})
     }
 
     PlaceHolder(){
-        let pXs = this.state.xs
+        let pXs = []
         let eq = this.state.equations
         let X = 0;
-        let cXs =[];
-        console.log(0+"Iteration",pXs)
+        let cXs =[]
+        for(let i=0;i<this.state.mSize;i++){
+            pXs[i]=0
+            cXs[i]=0
+        }
         for(let z=0;z<this.state.mI;z++){
             for(let x=0;x<this.state.mSize;x++){
                 X= eq[x][this.state.mSize]
                 for(let y=0;y<this.state.mSize;y++){
-                    if(!(x==y)){X=X-(eq[x][y]*pXs[y])}
+                    if(!(x==y)){X=X- (this.state.methodOption ==1 ?(eq[x][y]*pXs[y]):(eq[x][y]*cXs[y]))}
                 }
-                X =X/eq[x][x]
+                X =(X/eq[x][x])
                 cXs[x]=X
             }
          pXs = cXs
@@ -95,7 +97,7 @@ class Gauss_Calculator extends React.Component {
     showSolution(){
         let solutionList = []
         for(let i=1;i<=this.state.mSize;i++){
-            solutionList.push(<span key={i}>X{i}={this.state.xs[i-1]}</span>)
+            solutionList.push(<p key={i}>X{i}={this.state.xs[i-1]}</p>)
         }
         return solutionList
     }
@@ -103,13 +105,18 @@ class Gauss_Calculator extends React.Component {
       render() {
       return <div className="flex flex-col flex-auto">
           <h1 className="text-4xl m-auto bg-black text-white rounded-xl"> السلام عليكم و رحمةالله</h1>
-          <p className="text-4xl m-auto bg-black text-white rounded-xl">  hvujfvjyhvj</p>
           <div className="flex flex-row">
               <label>Num of Variables in the system:</label>
             <input id="mSize" type="number" defaultValue="0" min="0"></input>
             <label>Num of required Iterations:</label>
             <input id="mI" type="number" defaultValue="0" min="0"></input>
-            <button type="button" onClick={()=>(this.setState({mSize: document.querySelector('#mSize').value, mI:  document.querySelector('#mI').value}))}>
+            <div className="flex flex-col">
+            <label>0 = gauss and seidel method:</label>
+            <label>1 = gauss and jaccobi method:</label>
+            </div>
+            <input id="methodOption" type="number" defaultValue="0" min="0" max="1"></input>
+            <button type="button" onClick={()=>(this.setState({mSize: document.querySelector('#mSize').value, 
+            mI:  document.querySelector('#mI').value,methodOption: document.querySelector('#methodOption').value}))}>
                 Click Me!</button>
           </div>
           
@@ -121,8 +128,8 @@ class Gauss_Calculator extends React.Component {
 
           <button type="button" onClick={()=>(this.getSolution())}>
                 Click Me for solutions!</button>
-
-          <div className="flex flex-row">
+                    {this.state.methodOption==0?(<h3>solution using gauss and seidel method</h3>):(<h3>solution using gauss and jaccobi method</h3>)}
+          <div className="flex flex-col">
               {this.showSolution()}
           </div>
       </div>;
