@@ -77,7 +77,7 @@ class Gauss_Calculator extends React.Component {
         this.setState({xs: xArray,equations: array})
     }
 
-    PlaceHolder(){
+    mySolution(){
         let pXs = []
         let eq = this.state.equations
         let X = 0;
@@ -101,9 +101,14 @@ class Gauss_Calculator extends React.Component {
         setTimeout(()=>(console.log(this.state)),100)
     }
 
+    samySolution(){
+
+    }
+
     getSolution(){
         this.assignEquations()
-        setTimeout(()=>(this.PlaceHolder()),100)
+        setTimeout(()=>(this.mySolution()),100)
+    //    setTimeout(()=>(this.samySolution()),100)
     }
 
     showSolution(){
@@ -172,7 +177,7 @@ class Gauss_Calculator extends React.Component {
           </div>
           <h2 className="self-center text-xl bg-black rounded-xl p-3 text-white">solution List 2 using gauss and jaccobi method</h2>
           <div className="flex flex-col">
-              {this.showSolution()}
+              {this.showSamySolution()}
           </div>
       </div>;
     }
