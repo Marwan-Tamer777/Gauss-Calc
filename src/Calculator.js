@@ -19,7 +19,7 @@ class Gauss_Calculator extends React.Component {
             X.push(0)
         }
 
-        this.setState({mSize: document.querySelector('#mSize').value,xs:X,Sxs:X, eQs: document.querySelector('#eqs'),
+        this.setState({mSize: document.querySelector('#mSize').value,xs:X,Sxs:X, eQs: document.querySelector('#eqs').value,
             mI:  document.querySelector('#mI').value,methodOption: document.querySelector('#methodOption').value})
     }
 
@@ -122,10 +122,11 @@ class Gauss_Calculator extends React.Component {
         a[i]= placeHolder
     }
     for (i=0;i<n;i++){
+
         x[i]= this.state.xs[i];
     }
 
-    eps = this.state.eQs
+    eps = this.state.eQs ==0 ? (1):(this.state.eQs)
 
     for (i=0;i<n;i++){ //Pivotisation(partial) to make the equations diagonally dominant
 
@@ -136,7 +137,6 @@ class Gauss_Calculator extends React.Component {
                 for (j=0;j<=n;j++)
 
                 {
-
                     let temp=a[i][j];
 
                     a[i][j]=a[k][j];
@@ -173,7 +173,7 @@ class Gauss_Calculator extends React.Component {
             for (j=0;j<n;j++)
 
             {
-
+                console.log(1)
                 if (j!=i)
 
                     x[i]=x[i]-a[i][j]*x[j];
@@ -183,7 +183,6 @@ class Gauss_Calculator extends React.Component {
             x[i]=x[i]/a[i][i];
 
             if (Math.abs(x[i]-y)<=eps){ //Compare the ne value with the last value
-
                 flag++;
             }
             //cout<<x[i]<<setw(18);
