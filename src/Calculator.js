@@ -104,7 +104,7 @@ class Gauss_Calculator extends React.Component {
     samySolution(){
         //Gaus-seidel
 
-    let flag=0,count=0;
+    let i,j,k,flag=0,count=0;
     let n= Number(this.state.mSize)
     console.log(this.state)
     let a = this.state.equations; //declare a 2d array for storing the elements of the augmented matrix
@@ -113,19 +113,19 @@ class Gauss_Calculator extends React.Component {
 
     let eps,y;
     eps = Number(this.state.eQs) ==0 ? (1):(Number(this.state.eQs))
-    for (let i=0;i<n;i++){
+    for ( i=0;i<n;i++){
 
         x[i]= 0;
     }
 
     console.log(a,x,eps,n)
-    for (let i=0;i<n;i++){ //Pivotisation(partial) to make the equations diagonally dominant
+    for ( i=0;i<n;i++){ //Pivotisation(partial) to make the equations diagonally dominant
 
-        for (let k=i+1;k<n;k++){
+        for ( k=i+1;k<n;k++){
 
             if (a[i][i]<a[k][i]){
 
-                for (let j=0;j<=n;j++)
+                for ( j=0;j<=n;j++)
 
                 {
                     let temp=a[i][j];
@@ -138,7 +138,7 @@ class Gauss_Calculator extends React.Component {
             }
         }
     }
-
+    console.log(a)
     //cout<<"Iter"<<setw(10);
 
     //for(i=0;i<n;i++)
@@ -153,7 +153,7 @@ class Gauss_Calculator extends React.Component {
 
         //cout<<"\n"<<count+1<<"."<<setw(16);
 
-        for (let i=0;i<n;i++) //Loop that calculates x1,x2,...xn
+        for (i=0;i<n;i++) //Loop that calculates x1,x2,...xn
 
         {
 
@@ -161,7 +161,7 @@ class Gauss_Calculator extends React.Component {
 
             x[i]=a[i][n];
 
-            for (let j=0;j<n;j++)
+            for ( j=0;j<n;j++)
 
             {
                 if (j!=i)
@@ -172,7 +172,7 @@ class Gauss_Calculator extends React.Component {
 
             x[i]=(x[i]/a[i][i])
 
-            console.log("HERE",x[i],y,eps)
+//            console.log("HERE",x[i],y,eps)
             if (x[i]-y<=eps){ //Compare the ne value with the last value
                 flag++;
             }
