@@ -172,7 +172,8 @@ class Gauss_Calculator extends React.Component {
 
             x[i]=(x[i]/a[i][i])
 
-            if (Math.abs(x[i]-y)<=eps){ //Compare the ne value with the last value
+            console.log("HERE",x[i],y,eps)
+            if (x[i]-y<=eps){ //Compare the ne value with the last value
                 flag++;
             }
             //cout<<x[i]<<setw(18);
