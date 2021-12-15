@@ -19,7 +19,7 @@ class Gauss_Calculator extends React.Component {
             X.push(0)
         }
 
-        this.setState({mSize: document.querySelector('#mSize').value,xs:X,Sxs:X, eQs: document.querySelector('#eqs').value,
+        this.setState({mSize: document.querySelector('#mSize').value,xs:X,Sxs:X,/* eQs: document.querySelector('#eqs').value,*/
             mI:  document.querySelector('#mI').value,methodOption: document.querySelector('#methodOption').value})
     }
 
@@ -178,7 +178,7 @@ class Gauss_Calculator extends React.Component {
             //cout<<x[i]<<setw(18);
 
         }
-        
+
     }while(flag<3); //If the values of all the variables don't differ from their previous values with error more than eps then flag must be 3 and hence stop the loop
 
     this.setState({Sxs: x})
@@ -231,15 +231,15 @@ class Gauss_Calculator extends React.Component {
           <div className="flex flex-row content-center justify-center">
             <label className="self-center m-3">Num of Variables in the system:</label>
             <input id="mSize" type="number" defaultValue="0" min="0"></input>
-            <label className="self-center m-3">Num of required Iterations(usef for first solution only):</label>
+            <label className="self-center m-3">Num of required Iterations:</label>
             <input id="mI" type="number" defaultValue="0" min="0"></input>
             <div className="flex flex-col">
             <label className="self-center m-3">0 = gauss and seidel method:</label>
             <label className="self-center m-3">1 = gauss and jaccobi method:</label>
             </div>
             <input id="methodOption" type="number" defaultValue="0" min="0" max="1"></input>
-            <label className="self-center m-3">enter the accuracy upto (used for second solution only): </label>
-            <input id="eqs" type="number" defaultValue="0" min="0"></input>
+            {/*<label className="self-center m-3">enter the accuracy upto (used for second solution only): </label>
+            <input id="eqs" type="number" defaultValue="0" min="0"></input>*/}
             <button type="button" onClick={()=>(this.assignStartValues())}>
                 Click Me!</button>
           </div>
@@ -257,10 +257,10 @@ class Gauss_Calculator extends React.Component {
           <div className="flex flex-col">
               {this.showSolution()}
           </div>
-          <h2 className="self-center text-xl bg-black rounded-xl p-3 text-white">solution List 2 using gauss and jaccobi method</h2>
+         {/* <h2 className="self-center text-xl bg-black rounded-xl p-3 text-white">solution List 2 using gauss and jaccobi method</h2>
           <div className="flex flex-col">
               {this.showSamySolution()}
-          </div>
+          </div>*/}
       </div>;
     }
   }
