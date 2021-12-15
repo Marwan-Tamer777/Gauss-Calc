@@ -104,7 +104,7 @@ class Gauss_Calculator extends React.Component {
     samySolution(){
         //Gaus-seidel
 
-    let i,j,k,flag=0,count=0;
+    let i,j,k,flag=0;
     let n= Number(this.state.mSize)
     console.log(this.state)
     let a = this.state.equations; //declare a 2d array for storing the elements of the augmented matrix
@@ -114,7 +114,6 @@ class Gauss_Calculator extends React.Component {
     let eps,y;
     eps = Number(this.state.eQs) ==0 ? (1):(Number(this.state.eQs))
     for ( i=0;i<n;i++){
-
         x[i]= 0;
     }
 
@@ -179,10 +178,7 @@ class Gauss_Calculator extends React.Component {
             //cout<<x[i]<<setw(18);
 
         }
-
-
-        count++;
-
+        
     }while(flag<3); //If the values of all the variables don't differ from their previous values with error more than eps then flag must be 3 and hence stop the loop
 
     this.setState({Sxs: x})
