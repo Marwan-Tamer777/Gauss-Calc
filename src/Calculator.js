@@ -119,7 +119,7 @@ class Gauss_Calculator extends React.Component {
         for (j=0;j<=n;j++){
             placeHolder[j]=this.state.equations[i][j];
         }
-        x[i]= placeHolder
+        a[i]= placeHolder
     }
     for (i=0;i<n;i++){
         x[i]= this.state.xs[i];
