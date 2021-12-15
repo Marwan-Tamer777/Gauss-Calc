@@ -8,7 +8,8 @@ class Gauss_Calculator extends React.Component {
         Sxs:[],
         equations:[],
         mI:0,
-        methodOption:0
+        methodOption:0,
+        eQs: 0
     } 
 
     assignStartValues(){
@@ -18,7 +19,7 @@ class Gauss_Calculator extends React.Component {
             X.push(0)
         }
 
-        this.setState({mSize: document.querySelector('#mSize').value,xs:X,
+        this.setState({mSize: document.querySelector('#mSize').value,xs:X, eQs: document.querySelector('#eqs'),
             mI:  document.querySelector('#mI').value,methodOption: document.querySelector('#methodOption').value})
     }
 
@@ -102,7 +103,104 @@ class Gauss_Calculator extends React.Component {
     }
 
     samySolution(){
+        /*
+        //Gaus-seidel
 
+    let n,i,j,k,flag=0,count=0;
+    n= this.state.mSize
+
+    let a = []; //declare a 2d array for storing the elements of the augmented matrix
+
+    let x = []; //declare an array to store the values of variables
+
+    let eps,y;
+
+    for (i=0;i<n;i++)
+
+        for (j=0;j<=n;j++)
+
+            a[i][j] = this.state.equations[i][j];
+    for (i=0;i<n;i++)
+
+        x[i]= this.state.xs[i];
+
+    cout<<"\nEnter the accuracy upto which you want the solution:\n";
+
+    cin>>eps;
+
+    for (i=0;i<n;i++) //Pivotisation(partial) to make the equations diagonally dominant
+
+        for (k=i+1;k<n;k++)
+
+            if (a[i][i]<a[k][i])
+
+                for (j=0;j<=n;j++)
+
+                {
+
+                    let temp=a[i][j];
+
+                    a[i][j]=a[k][j];
+
+                    a[k][j]=temp;
+
+                }
+
+    //cout<<"Iter"<<setw(10);
+
+    //for(i=0;i<n;i++)
+
+      //  cout<<"x"<<i<<setw(18);
+
+    //cout<<"\n----------------------------------------------------------------------";
+
+    do //Perform iterations to calculate x1,x2,...xn
+
+    {
+
+        //cout<<"\n"<<count+1<<"."<<setw(16);
+
+        for (i=0;i<n;i++) //Loop that calculates x1,x2,...xn
+
+        {
+
+            y=x[i];
+
+            x[i]=a[i][n];
+
+            for (j=0;j<n;j++)
+
+            {
+
+                if (j!=i)
+
+                    x[i]=x[i]-a[i][j]*x[j];
+
+            }
+
+            x[i]=x[i]/a[i][i];
+
+            if (abs(x[i]-y)<=eps) //Compare the ne value with the last value
+
+                flag++;
+
+            //cout<<x[i]<<setw(18);
+
+        }
+
+        cout<<"\n";
+
+        count++;
+
+    }while(flag<3); //If the values of all the variables don't differ from their previous values with error more than eps then flag must be 3 and hence stop the loop
+
+    cout<<"\n The solution is as follows:\n";
+
+    for (i=0;i<n;i++)
+
+        cout<<"x"<<i<<" = "<<x[i]<<endl; //Print the contents of x[]
+
+    */
     }
 
     getSolution(){
@@ -151,13 +249,15 @@ class Gauss_Calculator extends React.Component {
           <div className="flex flex-row content-center justify-center">
             <label className="self-center m-3">Num of Variables in the system:</label>
             <input id="mSize" type="number" defaultValue="0" min="0"></input>
-            <label className="self-center m-3">Num of required Iterations:</label>
+            <label className="self-center m-3">Num of required Iterations(usef for first solution only):</label>
             <input id="mI" type="number" defaultValue="0" min="0"></input>
             <div className="flex flex-col">
             <label className="self-center m-3">0 = gauss and seidel method:</label>
             <label className="self-center m-3">1 = gauss and jaccobi method:</label>
             </div>
             <input id="methodOption" type="number" defaultValue="0" min="0" max="1"></input>
+            <label className="self-center m-3">enter the accuracy upto (used for second solution only): </label>
+            <input id="eqs" type="number" defaultValue="0" min="0"></input>
             <button type="button" onClick={()=>(this.assignStartValues())}>
                 Click Me!</button>
           </div>
