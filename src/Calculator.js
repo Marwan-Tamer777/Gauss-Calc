@@ -99,7 +99,6 @@ class Gauss_Calculator extends React.Component {
          pXs = cXs
         }
         this.setState({xs: cXs})
-        setTimeout(()=>(console.log(this.state)),100)
     }
 
     samySolution(){
@@ -173,14 +172,13 @@ class Gauss_Calculator extends React.Component {
             for (j=0;j<n;j++)
 
             {
-                console.log(1)
                 if (j!=i)
 
-                    x[i]=x[i]-a[i][j]*x[j];
+                    x[i]=(x[i]-a[i][j]*x[j])
 
             }
 
-            x[i]=x[i]/a[i][i];
+            x[i]=(x[i]/a[i][i])
 
             if (Math.abs(x[i]-y)<=eps){ //Compare the ne value with the last value
                 flag++;
@@ -201,6 +199,7 @@ class Gauss_Calculator extends React.Component {
         this.assignEquations()
         setTimeout(()=>(this.mySolution()),100)
         setTimeout(()=>(this.samySolution()),100)
+        setTimeout(()=>(console.log(this.state)),100)
     }
 
     showSolution(){
