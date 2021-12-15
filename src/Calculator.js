@@ -19,7 +19,7 @@ class Gauss_Calculator extends React.Component {
             X.push(0)
         }
 
-        this.setState({mSize: document.querySelector('#mSize').value,xs:X, eQs: document.querySelector('#eqs'),
+        this.setState({mSize: document.querySelector('#mSize').value,xs:X,Sxs:X, eQs: document.querySelector('#eqs'),
             mI:  document.querySelector('#mI').value,methodOption: document.querySelector('#methodOption').value})
     }
 
@@ -103,7 +103,6 @@ class Gauss_Calculator extends React.Component {
     }
 
     samySolution(){
-        /*
         //Gaus-seidel
 
     let n,i,j,k,flag=0,count=0;
@@ -115,24 +114,24 @@ class Gauss_Calculator extends React.Component {
 
     let eps,y;
 
-    for (i=0;i<n;i++)
+    for (i=0;i<n;i++){
 
-        for (j=0;j<=n;j++)
+        for (j=0;j<=n;j++){
 
             a[i][j] = this.state.equations[i][j];
-    for (i=0;i<n;i++)
-
+        }
+    }
+    for (i=0;i<n;i++){
         x[i]= this.state.xs[i];
+    }
 
-    cout<<"\nEnter the accuracy upto which you want the solution:\n";
+    eps = this.state.eQs
 
-    cin>>eps;
+    for (i=0;i<n;i++){ //Pivotisation(partial) to make the equations diagonally dominant
 
-    for (i=0;i<n;i++) //Pivotisation(partial) to make the equations diagonally dominant
+        for (k=i+1;k<n;k++){
 
-        for (k=i+1;k<n;k++)
-
-            if (a[i][i]<a[k][i])
+            if (a[i][i]<a[k][i]){
 
                 for (j=0;j<=n;j++)
 
@@ -145,6 +144,9 @@ class Gauss_Calculator extends React.Component {
                     a[k][j]=temp;
 
                 }
+            }
+        }
+    }
 
     //cout<<"Iter"<<setw(10);
 
@@ -180,33 +182,26 @@ class Gauss_Calculator extends React.Component {
 
             x[i]=x[i]/a[i][i];
 
-            if (abs(x[i]-y)<=eps) //Compare the ne value with the last value
+            if (Math.abs(x[i]-y)<=eps){ //Compare the ne value with the last value
 
                 flag++;
-
+            }
             //cout<<x[i]<<setw(18);
 
         }
 
-        cout<<"\n";
 
         count++;
 
     }while(flag<3); //If the values of all the variables don't differ from their previous values with error more than eps then flag must be 3 and hence stop the loop
 
-    cout<<"\n The solution is as follows:\n";
-
-    for (i=0;i<n;i++)
-
-        cout<<"x"<<i<<" = "<<x[i]<<endl; //Print the contents of x[]
-
-    */
+    this.setState({Sxs: x})
     }
 
     getSolution(){
         this.assignEquations()
         setTimeout(()=>(this.mySolution()),100)
-    //    setTimeout(()=>(this.samySolution()),100)
+        setTimeout(()=>(this.samySolution()),100)
     }
 
     showSolution(){
@@ -219,8 +214,8 @@ class Gauss_Calculator extends React.Component {
 
     showSamySolution(){
         let solutionList = []
-        for(let i=1;i<=this.state.mSize;i++){
-            solutionList.push(<p key={i} className="self-center">X{i}={this.state.xs[i-1]}</p>)
+        for(let i=0;i<this.state.mSize;i++){
+            solutionList.push(<p key={i} className="self-center">X{i+1}={this.state.Sxs[i].toFixed(4)}</p>)
         }
         return solutionList
     }
