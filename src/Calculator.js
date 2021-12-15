@@ -4,17 +4,29 @@ import './output.css';
 class Gauss_Calculator extends React.Component {
     state={
         mSize: 0,
-        xs: [0,0,0,0],
+        xs: [],
+        Sxs:[],
         equations:[],
         mI:0,
         methodOption:0
     } 
 
+    assignStartValues(){
+        let X=[]
+        
+        for(let i =0;i<document.querySelector('#mSize').value;i++){
+            X.push(0)
+        }
+
+        this.setState({mSize: document.querySelector('#mSize').value,xs:X,
+            mI:  document.querySelector('#mI').value,methodOption: document.querySelector('#methodOption').value})
+    }
+
     getEquation (index) {
         let content = [];
         for (let i = 0; i <= this.state.mSize; i++) {
-          content.push(
-                <span key={i}>
+        content.push(
+                <span key={i} className="self-center">
                     {
                         i == this.state.mSize ?  
                         (<span>
@@ -37,7 +49,7 @@ class Gauss_Calculator extends React.Component {
        
         for (let i = 0; i < this.state.mSize; i++) {
           content.push(
-                <div key={i}>
+                <div key={i} className="self-center">
                     {
                         this.getEquation(i)
                     }
@@ -96,39 +108,69 @@ class Gauss_Calculator extends React.Component {
 
     showSolution(){
         let solutionList = []
-        for(let i=1;i<=this.state.mSize;i++){
-            solutionList.push(<p key={i}>X{i}={this.state.xs[i-1]}</p>)
+        for(let i=0;i<this.state.mSize;i++){
+            solutionList.push(<p key={i} className="self-center">X{i+1}={this.state.xs[i].toFixed(4)}</p>)
         }
         return solutionList
     }
 
-      render() {
+    showSamySolution(){
+        let solutionList = []
+        for(let i=1;i<=this.state.mSize;i++){
+            solutionList.push(<p key={i} className="self-center">X{i}={this.state.xs[i-1]}</p>)
+        }
+        return solutionList
+    }
+         
+     showNames(){
+            let namesList =[]
+            for(let i=0;i<=this.names.length-1;i+=2){
+                namesList.push(<span className="w-1/3 p-2 text-lg">
+                            {"Name: " +this.names[i] + "   ID: " + this.names[i+1]}
+                 </span>)
+            }
+            return namesList
+        }
+
+        names = [["Marwan Tamer Galal"] ,["20200508"],["Abdelrhman Mohmed Ahmed Mahros"] ,["20200318"],
+          ["Khaled Fahmy Mohamed"], ["20200169"],["samy Mohsen Mousa"] ,["20200220"],
+          ["Abdelaziz Ashraf Abdelaziz"] ,["20200321"],["Mohamed Mahmoud Mohamed"], ["20200474"],
+          ["Ahamed Adel Ali"], ["20201009"],["Mohamed Yasser shehta"],["20200484"]]
+        render() {
       return <div className="flex flex-col flex-auto">
-          <h1 className="text-4xl m-auto bg-black text-white rounded-xl"> السلام عليكم و رحمةالله</h1>
-          <div className="flex flex-row">
-              <label>Num of Variables in the system:</label>
+          <h1 className="text-4xl m-auto bg-black text-white rounded-xl p-5 mt-5 mb-5">  السلام عليكم و رحمةالله و بركاته</h1>
+          <h1 className="text-4xl m-auto bg-black text-white rounded-xl p-5 mt-5 mb-5"> approximation calculator for linear systems by:</h1>
+          <div className="flex flex-row flex-wrap bg-slate-600 m-2 rounded-xl">
+              {this.showNames()}
+          </div>
+          <div className="flex flex-row content-center justify-center">
+            <label className="self-center m-3">Num of Variables in the system:</label>
             <input id="mSize" type="number" defaultValue="0" min="0"></input>
-            <label>Num of required Iterations:</label>
+            <label className="self-center m-3">Num of required Iterations:</label>
             <input id="mI" type="number" defaultValue="0" min="0"></input>
             <div className="flex flex-col">
-            <label>0 = gauss and seidel method:</label>
-            <label>1 = gauss and jaccobi method:</label>
+            <label className="self-center m-3">0 = gauss and seidel method:</label>
+            <label className="self-center m-3">1 = gauss and jaccobi method:</label>
             </div>
             <input id="methodOption" type="number" defaultValue="0" min="0" max="1"></input>
-            <button type="button" onClick={()=>(this.setState({mSize: document.querySelector('#mSize').value, 
-            mI:  document.querySelector('#mI').value,methodOption: document.querySelector('#methodOption').value}))}>
+            <button type="button" onClick={()=>(this.assignStartValues())}>
                 Click Me!</button>
           </div>
           
-          <div className="flex flex-col">
+          <div className="flex flex-col justify-center content-center">
               {
                   this.getEquationList()
               }
           </div>
 
-          <button type="button" onClick={()=>(this.getSolution())}>
+          <button type="button" className="self-center" onClick={()=>(this.getSolution())}>
                 Click Me for solutions!</button>
-                    {this.state.methodOption==0?(<h3>solution using gauss and seidel method</h3>):(<h3>solution using gauss and jaccobi method</h3>)}
+                    {this.state.methodOption==0?(<h2 className="self-center text-xl bg-black rounded-xl p-3 text-white">solution using gauss and seidel method</h2>):
+                    (<h2 className="self-center text-xl bg-black rounded-xl p-3 text-white">solution List 1 using gauss and jaccobi method</h2>)}
+          <div className="flex flex-col">
+              {this.showSolution()}
+          </div>
+          <h2 className="self-center text-xl bg-black rounded-xl p-3 text-white">solution List 2 using gauss and jaccobi method</h2>
           <div className="flex flex-col">
               {this.showSolution()}
           </div>
