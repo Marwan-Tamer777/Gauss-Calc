@@ -209,18 +209,18 @@ class Gauss_Calculator extends React.Component {
          
      showNames(){
             let namesList =[]
-            for(let i=0;i<=this.names.length-1;i+=2){
-                namesList.push(<span className="w-1/3 p-2 text-lg">
-                            {"Name: " +this.names[i] + "   ID: " + this.names[i+1]}
+            for(let i=0;i<=this.names.length-1;i+=3){
+                namesList.push(<span className="w-1/2 p-2 text-lg">
+                            {"Name: " +this.names[i] + "|| ID: " + this.names[i+1] + "|| serial: " + this.names[i+2]}
                  </span>)
             }
             return namesList
         }
 
-        names = [["Marwan Tamer Galal"] ,["20200508"],["Abdelrhman Mohmed Ahmed Mahros"] ,["20200318"],
-          ["Khaled Fahmy Mohamed"], ["20200169"],["samy Mohsen Mousa"] ,["20200220"],
-          ["Abdelaziz Ashraf Abdelaziz"] ,["20200321"],["Mohamed Mahmoud Mohamed"], ["20200474"],
-          ["Ahamed Adel Ali"], ["20201009"],["Mohamed Yasser shehta"],["20200484"]]
+        names = [["Marwan Tamer Galal"] ,["20200508"],["565"],["Abdelrhman Mohmed Ahmed Mahros"] ,["20200318"],["754"],
+          ["Khaled Fahmy Mohamed"], ["20200169"],["319"],["samy Mohsen Mousa"] ,["20200220"],["250"],
+          ["Abdelaziz Ashraf Abdelaziz"] ,["20200321"],["752"],["Mohamed Mahmoud Mohamed"], ["20200474"],["649"],
+          ["Ahamed Adel Ali"], ["20201009"],["112"],["Mohamed Yasser shehta"],["20200484"],["563"]]
         render() {
       return <div className="flex flex-col flex-auto">
           <h1 className="text-4xl m-auto bg-black text-white rounded-xl p-5 mt-5 mb-5">  السلام عليكم و رحمةالله و بركاته</h1>
