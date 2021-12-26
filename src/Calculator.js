@@ -1,5 +1,6 @@
 import React from 'react';
 import './output.css';
+import Logo from './college.jpg';
 
 class Gauss_Calculator extends React.Component {
     state={
@@ -224,8 +225,9 @@ class Gauss_Calculator extends React.Component {
         ["Abdelaziz Ashraf Abdelaziz"] ,["20200321"],["752"],["Abdelrhman Mohmed Ahmed Mahros"] ,["20200318"],["754"]]
         render() {
       return <div className="flex flex-col flex-auto">
-          <h1 className="text-4xl m-auto bg-black text-white rounded-xl p-3 mt-3 mb-3 inline"> Approximation Calculator for Linear Systems:</h1>
-          <img src="F:\web programming\Gauss Calc\src\college.jpg" alt="logo" className="inline"/>
+          <div className="flex flex-row justify-center content-center">
+          <h1 className="text-4xl m-auto bg-black text-white rounded-xl p-5"> Approximation Calculator for Linear Systems:</h1>
+          <img src={Logo} alt="logo" className="w-40 h-40 rounded-xl m-3"/></div>
           <h3 className="text-2xl m-auto bg-black text-white rounded-xl p-3 mt-3 mb-3"> Submitted by:</h3>
           <div className="flex flex-row flex-wrap bg-blue-500 m-auto rounded-xl">
               {this.showNames()}
