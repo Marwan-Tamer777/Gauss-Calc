@@ -9,7 +9,8 @@ class Gauss_Calculator extends React.Component {
         equations:[],
         mI:0,
         methodOption:0,
-        eQs: 0
+        eQs: 0,
+        showCacl: 0
     } 
 
     assignStartValues(){
@@ -210,25 +211,33 @@ class Gauss_Calculator extends React.Component {
      showNames(){
             let namesList =[]
             for(let i=0;i<=this.names.length-1;i+=3){
-                namesList.push(<span className="w-1/2 p-2 text-lg">
-                            {"Name: " +this.names[i] + "|| ID: " + this.names[i+1] + "|| serial: " + this.names[i+2]}
+                namesList.push(<span className="w-1/4 p-2 text-lg">
+                            {this.names[i]}
                  </span>)
             }
             return namesList
         }
 
-        names = [["Marwan Tamer Galal"] ,["20200508"],["565"],["Abdelrhman Mohmed Ahmed Mahros"] ,["20200318"],["754"],
-          ["Khaled Fahmy Mohamed"], ["20200169"],["319"],["samy Mohsen Mousa"] ,["20200220"],["250"],
-          ["Abdelaziz Ashraf Abdelaziz"] ,["20200321"],["752"],["Mohamed Mahmoud Mohamed"], ["20200474"],["649"],
-          ["Ahamed Adel Ali"], ["20201009"],["112"],["Mohamed Yasser shehta"],["20200484"],["563"]]
+        names = [["Ahamed Adel Ali"], ["20201009"],["112"],["samy Mohsen Mousa"] ,["20200220"],["250"],
+        ["Khaled Fahmy Mohamed"], ["20200169"],["319"],["Mohamed Yasser shehta"],["20200484"],["563"],
+        ["Marwan Tamer Galal"] ,["20200508"],["565"],["Mohamed Mahmoud Mohamed"], ["20200474"],["649"],
+        ["Abdelaziz Ashraf Abdelaziz"] ,["20200321"],["752"],["Abdelrhman Mohmed Ahmed Mahros"] ,["20200318"],["754"]]
         render() {
       return <div className="flex flex-col flex-auto">
-          <h1 className="text-4xl m-auto bg-black text-white rounded-xl p-5 mt-5 mb-5">  السلام عليكم و رحمةالله و بركاته</h1>
-          <h1 className="text-4xl m-auto bg-black text-white rounded-xl p-5 mt-5 mb-5"> approximation calculator for linear systems by:</h1>
-          <div className="flex flex-row flex-wrap bg-slate-600 m-2 rounded-xl">
+          <h1 className="text-4xl m-auto bg-black text-white rounded-xl p-3 mt-3 mb-3 inline"> Approximation Calculator for Linear Systems:</h1>
+          <img src="college.jpg" alt="logo" className="inline"/>
+          <h3 className="text-2xl m-auto bg-black text-white rounded-xl p-3 mt-3 mb-3"> Submitted by:</h3>
+          <div className="flex flex-row flex-wrap bg-blue-500 m-auto rounded-xl">
               {this.showNames()}
           </div>
-          <div className="flex flex-row content-center justify-center">
+          <h3 className="text-2xl m-auto bg-black text-white rounded-xl p-3 mt-3 mb-3"> Submitted For:</h3>
+          <h4 className="text-2xl bg-blue-500  rounded-xl font-bold p-3 m-auto">
+          Dr. Eng. Moustafa Reda A. Eltantawi
+          </h4>
+          <button type="button" className="self-center" onClick={()=>(this.setState({showCacl: this.state.showCacl==0 ? 1 : 0}))}>
+                {this.state.showCacl==0? "Show Calc" : "Hide Calc"}</button>
+          <div> {this.state.showCacl ==0? ("") : (<div>
+            <div className="flex flex-row content-center justify-center">
             <label className="self-center m-3">Num of Variables in the system:</label>
             <input id="mSize" type="number" defaultValue="0" min="0"></input>
             <label className="self-center m-3">Num of required Iterations:</label>
@@ -249,13 +258,15 @@ class Gauss_Calculator extends React.Component {
                   this.getEquationList()
               }
           </div>
-
-          <button type="button" className="self-center" onClick={()=>(this.getSolution())}>
+          <div className="flex flex-col justify-center content-center">
+          <button type="button" className="self-center text-center" onClick={()=>(this.getSolution())}>
                 Click Me for solutions!</button>
                     {this.state.methodOption==0?(<h2 className="self-center text-xl bg-black rounded-xl p-3 text-white">solution using gauss and seidel method</h2>):
-                    (<h2 className="self-center text-xl bg-black rounded-xl p-3 text-white">solution List 1 using gauss and jaccobi method</h2>)}
-          <div className="flex flex-col">
+                    (<h2 className="self-center text-xl bg-black rounded-xl p-3 text-white text-center items-center">solution List 1 using gauss and jaccobi method</h2>)}
               {this.showSolution()}
+          </div>
+          </div>)}
+          
           </div>
          {/* <h2 className="self-center text-xl bg-black rounded-xl p-3 text-white">solution List 2 using gauss and jaccobi method</h2>
           <div className="flex flex-col">
