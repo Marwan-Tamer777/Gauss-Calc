@@ -218,14 +218,14 @@ class Gauss_Calculator extends React.Component {
             return namesList
         }
 
-        names = [["Ahamed Adel Ali"], ["20201009"],["112"],["samy Mohsen Mousa"] ,["20200220"],["250"],
-        ["Khaled Fahmy Mohamed"], ["20200169"],["319"],["Mohamed Yasser shehta"],["20200484"],["563"],
+        names = [["Ahamed Adel Ali"], ["20201009"],["112"],["Samy Mohsen Mousa"] ,["20200220"],["250"],
+        ["Khaled Fahmy Mohamed"], ["20200169"],["319"],["Mohamed Yasser Shehta"],["20200484"],["563"],
         ["Marwan Tamer Galal"] ,["20200508"],["565"],["Mohamed Mahmoud Mohamed"], ["20200474"],["649"],
         ["Abdelaziz Ashraf Abdelaziz"] ,["20200321"],["752"],["Abdelrhman Mohmed Ahmed Mahros"] ,["20200318"],["754"]]
         render() {
       return <div className="flex flex-col flex-auto">
           <h1 className="text-4xl m-auto bg-black text-white rounded-xl p-3 mt-3 mb-3 inline"> Approximation Calculator for Linear Systems:</h1>
-          <img src="college.jpg" alt="logo" className="inline"/>
+          <img src="src\college.jpg" alt="logo" className="inline"/>
           <h3 className="text-2xl m-auto bg-black text-white rounded-xl p-3 mt-3 mb-3"> Submitted by:</h3>
           <div className="flex flex-row flex-wrap bg-blue-500 m-auto rounded-xl">
               {this.showNames()}
