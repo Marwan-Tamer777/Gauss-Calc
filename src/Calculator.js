@@ -227,16 +227,20 @@ class Gauss_Calculator extends React.Component {
       return <div className="flex flex-col flex-auto">
           <div className="flex flex-row justify-center content-center">
           <h1 className="text-4xl m-auto bg-black text-white rounded-xl p-5"> Approximation Calculator for Linear Systems:</h1>
-          <img src={Logo} alt="logo" className="w-40 h-40 rounded-xl m-3"/></div>
+          <img src={Logo} alt="logo" className=" w-32 h-32 rounded-xl m-3"/></div>
           <h3 className="text-2xl m-auto bg-black text-white rounded-xl p-3 mt-3 mb-3"> Submitted by:</h3>
           <div className="flex flex-row flex-wrap bg-blue-500 m-auto rounded-xl">
               {this.showNames()}
           </div>
+          <div className="flex flex-row">
           <h3 className="text-2xl m-auto bg-black text-white rounded-xl p-3 mt-3 mb-3"> Submitted For:</h3>
           <h4 className="text-2xl bg-blue-500  rounded-xl font-bold p-3 m-auto">
           Dr. Eng. Moustafa Reda A. Eltantawi
           </h4>
-          <button type="button" className="self-center" onClick={()=>(this.setState({showCacl: this.state.showCacl==0 ? 1 : 0}))}>
+          <h5 className="text-2xl bg-black text-white rounded-xl font-bold p-3 m-auto">Date: 27/12/2021</h5>
+          </div>
+          <button type="button" className="self-center p-2 font-bold rounded-2xl bg-green-300  hover:bg-green-500 hover:-translate-y-1 hover:scale-110  duration-300"
+           onClick={()=>(this.setState({showCacl: this.state.showCacl==0 ? 1 : 0}))}>
                 {this.state.showCacl==0? "Show Calc" : "Hide Calc"}</button>
           <div> {this.state.showCacl ==0? ("") : (<div>
             <div className="flex flex-row content-center justify-center">
@@ -251,7 +255,7 @@ class Gauss_Calculator extends React.Component {
             <input id="methodOption" type="number" defaultValue="0" min="0" max="1"></input>
             {/*<label className="self-center m-3">enter the accuracy upto (used for second solution only): </label>
             <input id="eqs" type="number" defaultValue="0" min="0"></input>*/}
-            <button type="button" onClick={()=>(this.assignStartValues())}>
+            <button type="button" className="self-center p-2 font-bold rounded-2xl bg-green-300  hover:bg-green-500 hover:-translate-y-1 hover:scale-110  duration-300" onClick={()=>(this.assignStartValues())}>
                 Click Me!</button>
           </div>
           
@@ -261,7 +265,7 @@ class Gauss_Calculator extends React.Component {
               }
           </div>
           <div className="flex flex-col justify-center content-center">
-          <button type="button" className="self-center text-center" onClick={()=>(this.getSolution())}>
+          <button type="button" className="self-center p-2 m-2 font-bold rounded-2xl bg-green-300  hover:bg-green-500 hover:-translate-y-1 hover:scale-110  duration-300" onClick={()=>(this.getSolution())}>
                 Click Me for solutions!</button>
                     {this.state.methodOption==0?(<h2 className="self-center text-xl bg-black rounded-xl p-3 text-white">solution using gauss and seidel method</h2>):
                     (<h2 className="self-center text-xl bg-black rounded-xl p-3 text-white text-center items-center">solution List 1 using gauss and jaccobi method</h2>)}
