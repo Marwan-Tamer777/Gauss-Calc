@@ -1,2 +1,2 @@
 # Gauss-Calc
- a Gauss & Jordan method calculator 
+ a Gauss & Jordan method calculator .
